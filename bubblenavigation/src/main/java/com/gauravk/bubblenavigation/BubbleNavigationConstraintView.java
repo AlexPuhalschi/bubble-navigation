@@ -333,8 +333,6 @@ public class BubbleNavigationConstraintView extends ConstraintLayout implements 
             return;
         }
 
-        if (currentActiveItemPosition == position) return;
-
         if (position < 0 || position >= bubbleNavItems.size())
             return;
 
