@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.gauravk.bubblenavigation.util.ViewUtils;
 
 /**
@@ -340,6 +341,7 @@ public class BubbleToggleView extends RelativeLayout {
     public void activate() {
         ViewUtils.updateDrawableColor(iconView.getDrawable(), bubbleToggleItem.getColorActive());
         isActive = true;
+        titleView.setVisibility(VISIBLE);
         ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
         animator.setDuration(animationDuration);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -349,7 +351,9 @@ public class BubbleToggleView extends RelativeLayout {
                 titleView.setWidth((int) (measuredTitleWidth * value));
                 //end of animation
                 if (value >= 1.0f) {
-                    titleView.setVisibility(VISIBLE);
+                    if (titleView.getVisibility() == GONE) {
+                        titleView.setVisibility(VISIBLE);
+                    }
                 }
             }
         });
